@@ -8,7 +8,7 @@ function Button({className, primary, secondary, ...props}) {
             styles.button,
             className,
             primary && styles.button_primary,
-            secondary & styles.button_secondary
+            secondary && styles.button_secondary
     )} 
     {...props} />
 
