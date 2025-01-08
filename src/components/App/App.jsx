@@ -1,4 +1,5 @@
 import styles from './App.module.scss';
+import { ButtonContainer } from '../../shared/buttons';
 import { FloatingButton } from '../../shared/buttons';
 import Content from '../Content';
 import Header from '../Header';
@@ -9,6 +10,7 @@ function App() {
 
   return (
     <>
+    <ButtonContainer>
       <div className={styles.app}>
         <Header />
         <Content>
@@ -20,6 +22,7 @@ function App() {
         </Content>
         <Menu />
       </div>
+      </ButtonContainer>
     </>
   );
 }
