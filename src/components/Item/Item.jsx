@@ -1,4 +1,5 @@
 import styles from './Item.module.scss';
+import { MdNavigateNext } from 'react-icons/md';
 
 function Item() {
     return (
@@ -10,6 +11,9 @@ function Item() {
                 <div className={styles.item_timespan}>1.10.2024 – 1.1.2025</div>
                 <div className={styles.item_receiver}>Helen Oy</div>
                 <div className={styles.item_average}>61,84 €/kk</div>
+            </div>
+            <div className={styles.item_edit}>
+                <MdNavigateNext />
             </div>
         </div>
     )
