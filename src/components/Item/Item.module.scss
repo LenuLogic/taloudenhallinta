@@ -1,0 +1,19 @@
+.item {
+    color: #696963;
+    border-bottom: 1px solid #C4C4C0;
+}
+
+.item_data {
+    display: grid;
+    grid-template-columns: 1fr 1fr; //rivi jaetaan kahteen osaan (fraction) ja kumpikin sarake on yhden osan kokoinen.
+    padding: 0.75rem; // rem=root element, 1rem on yhden html-elementin fonttikoko, yleensä 16px
+}
+
+.item_amount, .item_timespan, .item_average {
+    text-align: right;
+}
+
+.item_type, .item_amount {
+    color: #000000;
+    font-weight: bold;
+}
