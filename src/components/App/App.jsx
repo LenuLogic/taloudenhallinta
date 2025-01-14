@@ -5,6 +5,7 @@ import Content from '../Content';
 import Header from '../Header';
 import Items from '../Items';
 import Menu from '../Menu';
+import Stats from '../Stats';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
       <div className={styles.app}>
         <Header />
         <Content>
-          <Items />
+          <Stats />
         </Content>
         <Menu />
       </div>
