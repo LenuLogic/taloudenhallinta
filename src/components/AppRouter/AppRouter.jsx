@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AddItem from '../AddItem';
 import ErrorPage from '../ErrorPage';
 import Items from '../Items';
 import Root from '../Root';
@@ -16,7 +17,8 @@ function AppRouter (props) {
                 element: <Items />,
                 loader: () => { return props.data } },
                 { path: "stats", element: <Stats /> },
-                { path: "settings", element: <Settings /> }
+                { path: "settings", element: <Settings /> },
+                { path: "add", element: <AddItem /> }
             ]   
         }
     ]);
