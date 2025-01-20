@@ -1,29 +1,32 @@
 import styles from './ItemForm.module.scss';
 import Button from '../../shared/buttons';
 import useForm from '../../shared/useform/useform';
+import { useNavigate } from 'react-router-dom';
 
 function ItemForm(props) {
 
-// useFormin callback-funktio:
-const submit = () => {
-    console.log(values);
-    alert("SUBMIT");
-}
+    const navigate = useNavigate();
 
-const initialState = {
-    type: "",
-    amount: 0,
-    paymentDate: "",
-    periodStart: "",
-    periodEnd: "",
-    receiver: ""
-}
+    // useFormin callback-funktio:
+    const submit = () => {
+        console.log(values);
+        alert("SUBMIT");
+    }
 
-const {values, handleChange, handleSubmit} = useForm(submit, initialState, false);
+    const initialState = {
+        type: "",
+        amount: 0,
+        paymentDate: "",
+        periodStart: "",
+        periodEnd: "",
+        receiver: ""
+    }
 
-const handleCancel = () => {
-    alert("CANCEL");
-}
+    const {values, handleChange, handleSubmit} = useForm(submit, initialState, false);
+
+    const handleCancel = () => {
+        navigate(-1);
+    }
 
     return (
         <div>
