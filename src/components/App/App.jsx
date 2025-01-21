@@ -6,6 +6,8 @@ function App() {
   // tallennetaan lisätyt merkinnät tilamuuttujaan
   const [data, setData] = useState(testdata);
 
+  // tallentaa lisätyt tiedot ja sorttaa kaikki 
+  // tiedot uusimman maksupäivän mukaan.
   const handleItemSubmit = (newitem) => {
     let copy = data.slice();
     copy.push(newitem);
