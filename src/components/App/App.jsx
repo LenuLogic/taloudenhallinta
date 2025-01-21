@@ -6,6 +6,12 @@ function App() {
   // tallennetaan lisätyt merkinnät tilamuuttujaan
   const [data, setData] = useState(testdata);
 
+  const handleItemDelete = (id) => {
+    let copy = data.slice();
+    copy = copy.filter(item => item.id !== id)
+    setData(copy);
+  }
+
   // tallentaa lisätyt tiedot,
   // tarkistaa onko lisätyn tiedon indeksiä jo olemassa 
   // ja sorttaa kaikki tiedot uusimman maksupäivän mukaan.
@@ -29,7 +35,9 @@ function App() {
 
   return (
     <>
-      <AppRouter data={data} onItemSubmit={handleItemSubmit} />
+      <AppRouter  data={data} 
+                  onItemSubmit={handleItemSubmit}
+                  onItemDelete={handleItemDelete} />
     </>
   );
 }
