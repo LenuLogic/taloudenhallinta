@@ -1,11 +1,26 @@
 import AppRouter from '../AppRouter';
+import firebase from './firebase';
+import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
+import { useEffect } from 'react';
 import useLocalStorage from '../../shared/uselocalstorage';
 import { useState } from 'react';
 
 function App() {
   // tallennetaan lisätyt merkinnät tilamuuttujaan
-  const [data, setData] = useLocalStorage('taloudenhallintadata', []);
+  const [data, setData] = useState([]);
   const [typelist, setTypelist] = useLocalStorage('taloudenhallinta-typelist', []);
+  const firestore = getFirestore(firebase);
+
+  useEffect( () => {
+    const unsubscribe = onSnapshot(collection(firestore, 'item'), snapshot => {
+      const newData = []
+      snapshot.forEach( doc => {
+        newData.push({ ...doc.data(), id: doc.id })
+      })
+      setData(newData)
+    })
+    return unsubscribe
+  }, [])
 
   const handleItemDelete = (id) => {
     let copy = data.slice();
