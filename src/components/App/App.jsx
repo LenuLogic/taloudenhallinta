@@ -1,6 +1,6 @@
 import AppRouter from '../AppRouter';
 import firebase from './firebase';
-import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
 import { useEffect } from 'react';
 import useLocalStorage from '../../shared/uselocalstorage';
 import { useState } from 'react';
@@ -22,31 +22,12 @@ function App() {
     return unsubscribe
   }, [])
 
-  const handleItemDelete = (id) => {
-    let copy = data.slice();
-    copy = copy.filter(item => item.id !== id)
-    setData(copy);
+  const handleItemDelete = async (id) => {
+    await deleteDoc(doc(firestore, 'item', id))
   }
 
-  // tallentaa lisätyt tiedot,
-  // tarkistaa onko lisätyn tiedon indeksiä jo olemassa 
-  // ja sorttaa kaikki tiedot uusimman maksupäivän mukaan.
-  const handleItemSubmit = (newitem) => {
-    let copy = data.slice();
-
-    const index = copy.findIndex(item => item.id === newitem.id)
-    if (index >=0) {
-      copy[index] = newitem
-    } else {
-    copy.push(newitem);
-    }
-
-    copy.sort( (a,b) => {
-      const aDate = new Date(a.paymentDate)
-      const bDate = new Date(b.paymentDate)
-      return bDate-aDate;
-    })
-    setData(copy);
+  const handleItemSubmit = async (newitem) => {
+    await setDoc(doc(firestore, 'item', newitem.id), newitem)
   }
 
   const handleTypeSubmit = (type) => {
