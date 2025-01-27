@@ -17,9 +17,11 @@ function App() {
   const [user, setUser] = useState();
   const firestore = getFirestore(firebase);
 
-
+  // Koodi suoritetaan vain, jos käyttäjä on kirjautunut sisälle. 
+  // Jos ei ole, data-muuttuja tyhjennetään.
   useEffect( () => {
-    const unsubscribe = onSnapshot(query(collection(firestore, 'item'),
+    if (user) {
+    const unsubscribe = onSnapshot(query(collection(firestore, `user/${user.uid}/item`),
                                          orderBy('paymentDate', 'desc')), 
                                   snapshot => {
       const newData = []
@@ -29,11 +31,16 @@ function App() {
       setData(newData)
     })
     return unsubscribe
-  }, [])
+    } else {
+      setData([])
+    }
+  }, [user])
+
 
 
   useEffect( () => {
-    const unsubscribe = onSnapshot(query(collection(firestore, 'type'),
+    if (user) {
+    const unsubscribe = onSnapshot(query(collection(firestore, `user/${user.uid}/type`),
                                          orderBy('type')),
                                    snapshot => {
       const newTypelist = []
@@ -43,7 +50,10 @@ function App() {
       setTypelist(newTypelist)
     })
     return unsubscribe
-  }, [])
+    } else {
+      setTypelist([])
+    }
+  }, [user])
 
 
   useEffect( () => {
@@ -54,17 +64,17 @@ function App() {
 
 
   const handleItemDelete = async (id) => {
-    await deleteDoc(doc(firestore, 'item', id))
+    await deleteDoc(doc(firestore, `user/${user.uid}/item`, id))
   }
 
 
   const handleItemSubmit = async (newitem) => {
-    await setDoc(doc(firestore, 'item', newitem.id), newitem)
+    await setDoc(doc(firestore, `user/${user.uid}/item`, newitem.id), newitem)
   }
 
 
   const handleTypeSubmit =  async (type) => {
-    await addDoc(collection(firestore, 'type'), {type: type})
+    await addDoc(collection(firestore, `user/${user.uid}/type`), {type: type})
   }
 
 
