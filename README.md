@@ -118,9 +118,12 @@ To use this project, you need to have node and npm installed.
 <br />
 
 #### Expenses can be viewed as different types of charts
-![Flow chart](/screenshots/screenshot4.png?raw=true)
+![Line chart](/screenshots/screenshot4.png?raw=true)
+
 <br />
+
 ![Pie chart](/screenshots/screenshot5.png?raw=true)
+
 <br />
 
 ## Project Status
