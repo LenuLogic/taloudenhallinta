@@ -7,7 +7,7 @@ import { addDoc, collection, deleteDoc, doc, getFirestore, onSnapshot, orderBy, 
 
 import { useEffect } from 'react';
 import { useState } from 'react';
-
+ 
 function App() {
   // tallennetaan lisätyt merkinnät tilamuuttujaan
   const [data, setData] = useState([]);
