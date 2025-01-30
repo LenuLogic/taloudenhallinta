@@ -5,8 +5,6 @@ import firebase, { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { addDoc, collection, deleteDoc, doc, getFirestore, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 
-import useLocalStorage from '../../shared/uselocalstorage';
-
 import { useEffect } from 'react';
 import { useState } from 'react';
 
